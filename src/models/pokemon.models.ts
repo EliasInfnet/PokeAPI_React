@@ -4,7 +4,7 @@ export type Pokemon = {
   image: string
 }
 
-async function getPokemon(url: string): Promise<Pokemon> {
+export async function getPokemon(url: string): Promise<Pokemon> {
   const res = await fetch(url)
   const data = await res.json()
 
