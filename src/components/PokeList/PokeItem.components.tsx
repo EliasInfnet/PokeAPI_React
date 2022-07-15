@@ -1,29 +1,39 @@
-import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, CircularProgress, Grid, LinearProgress, Typography } from "@mui/material";
+import { useState } from "react";
 import { Pokemon } from "../../models/pokemon.models";
 import theme from "../../theme/theme";
 
-type PokeItemProps = {
-  pokemon: Pokemon
-}
 
-function PokeItem({ pokemon }: PokeItemProps) {
+function PokeItem(pokemon: Pokemon) {
+
   return (
     <Grid item xs={6} lg={4} xl={3}>
       <Card elevation={4}>
         <CardMedia
           component="img"
-          height="150"  
+          height='150'
           image={pokemon.image}
-          sx={{maxWidth:'60%' , margin:'20px auto 0 auto',borderWidth:'10px', borderColor:theme.palette.primary.main}}
+          sx={{ maxWidth: '60%', margin: '20px auto 0 auto' }}
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography variant="h5" component="div">
             {pokemon.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at ligula in massa ornare interdum.
+          <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
+            Altura
           </Typography>
+          <LinearProgress variant="determinate" color="info" value={Number(pokemon.height)} />
+          <br />
+          <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
+            Experiência
+          </Typography>
+          <LinearProgress variant="determinate" color="error" value={Number(pokemon.experience) / 20} />
+          <br />
+          <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
+            Peso
+          </Typography>
+          <LinearProgress variant="determinate" color="success" value={Number(pokemon.weight) / 10} />
         </CardContent>
       </Card>
     </Grid>

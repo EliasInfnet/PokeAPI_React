@@ -11,7 +11,7 @@ function PokeList({ pokemons }: PokeListProps) {
     <Grid container spacing={2}>
       {pokemons.map((p, index) => {
         return (
-          <PokeItem key={index} pokemon={p}/>
+          <PokeItem key={index} {...p}/>
         )
       })}
     </Grid>

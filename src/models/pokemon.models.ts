@@ -1,7 +1,10 @@
 export type Pokemon = {
   id: Number,
   name: string,
-  image: string
+  image: string,
+  height: Number,
+  experience: Number,
+  weight: Number
 }
 
 export async function getPokemon(url: string): Promise<Pokemon> {
@@ -11,11 +14,15 @@ export async function getPokemon(url: string): Promise<Pokemon> {
   const id = data.id
   const name = data.forms[0].name.charAt(0).toUpperCase() + data.forms[0].name.slice(1).toLowerCase()
   const image = data.sprites["front_default"]
+  const { height, base_experience, weight } = data
 
   const pokemon: Pokemon = {
     id,
     name,
-    image
+    image,
+    height,
+    experience: base_experience,
+    weight
   }
 
   return pokemon
@@ -28,7 +35,7 @@ export async function getPokemonResponse(url: string): Promise<any> {
 }
 
 export async function getPokemons(url: string): Promise<Array<Pokemon>> {
-  try {    
+  try {
     const data = await getPokemonResponse(url)
     const pokemonsJSON = data.results
 
