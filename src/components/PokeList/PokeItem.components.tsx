@@ -6,6 +6,12 @@ import theme from "../../theme/theme";
 
 function PokeItem(pokemon: Pokemon) {
 
+  const weightLog = Math.log10(Number(pokemon.weight)) * 25
+  const experienceLog = Number(pokemon.experience) / 3.95
+  const heightLog = Math.log10(Number(pokemon.height)) * 43.4
+
+  const barStyle = { height: '10px', borderRadius: '10px' }
+
   return (
     <Grid item xs={6} lg={4} xl={3}>
       <Card elevation={4}>
@@ -23,17 +29,17 @@ function PokeItem(pokemon: Pokemon) {
           <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
             Altura
           </Typography>
-          <LinearProgress variant="determinate" color="info" value={Number(pokemon.height)} />
+          <LinearProgress sx={barStyle} variant="determinate" color="info" value={heightLog} />
           <br />
           <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
             Experiência
           </Typography>
-          <LinearProgress variant="determinate" color="error" value={Number(pokemon.experience) / 20} />
+          <LinearProgress sx={barStyle} variant="determinate" color="error" value={experienceLog} />
           <br />
           <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
             Peso
           </Typography>
-          <LinearProgress variant="determinate" color="success" value={Number(pokemon.weight) / 10} />
+          <LinearProgress sx={barStyle} variant="determinate" color="success" value={weightLog} />
         </CardContent>
       </Card>
     </Grid>
