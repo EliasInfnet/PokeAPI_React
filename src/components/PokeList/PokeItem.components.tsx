@@ -1,6 +1,7 @@
 import { Card, CardContent, CardMedia, CircularProgress, Grid, LinearProgress, Typography } from "@mui/material";
+import { useState } from "react";
 import { Pokemon } from "../../models/pokemon.models";
-import PokemonPieChart from './PokemonPieChart/PokemonPieChart'
+import pokemonTypesColors, { pokemonColors } from "../../theme/pokemonType";
 
 
 function PokeItem(pokemon: Pokemon) {
@@ -9,10 +10,11 @@ function PokeItem(pokemon: Pokemon) {
   const experienceLog = Number(pokemon.experience) / 3.95
   const heightLog = Math.log10(Number(pokemon.height)) * 43.4
   const barStyle = { height: '7px', borderRadius: '10px' }
+  const pokemonColor = pokemonTypesColors[pokemon.type as keyof typeof pokemonTypesColors]
 
   return (
-    <Grid item xs={6} lg={4} xl={3}>
-      <Card elevation={4}>
+    <Grid item xs={6} lg={4} xl={3} >
+      <Card elevation={4} sx={{ backgroundColor: pokemonColor || 'blue', borderRadius:'10px' }}>
         <CardMedia
           component="img"
           height='150'
@@ -32,14 +34,13 @@ function PokeItem(pokemon: Pokemon) {
           <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
             Experiência
           </Typography>
-          <LinearProgress sx={barStyle} variant="determinate" color="error" value={experienceLog} />
+          <LinearProgress sx={barStyle} variant="determinate" color="success" value={experienceLog} />
           <br />
           <Typography gutterBottom variant="subtitle2" sx={{ textAlign: 'left' }} component="div">
             Peso
           </Typography>
-          <LinearProgress sx={barStyle} variant="determinate" color="success" value={weightLog} />
+          <LinearProgress sx={barStyle} variant="determinate" color="error" value={weightLog} />
         </CardContent>
-        <PokemonPieChart experience={pokemon.experience} weight={pokemon.weight} height={pokemon.weight}/>
       </Card>
     </Grid>
   );

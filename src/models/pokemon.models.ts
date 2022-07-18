@@ -1,10 +1,13 @@
+import { pokemonColors } from "../theme/pokemonType"
+
 export type Pokemon = {
   id: Number,
   name: string,
   image: string,
   height: Number,
   experience: Number,
-  weight: Number
+  weight: Number,
+  type: String
 }
 
 export async function getPokemon(url: string): Promise<Pokemon> {
@@ -15,6 +18,7 @@ export async function getPokemon(url: string): Promise<Pokemon> {
   const name = data.forms[0].name.charAt(0).toUpperCase() + data.forms[0].name.slice(1).toLowerCase()
   const image = data.sprites["front_default"]
   const { height, base_experience, weight } = data
+  const type = data.types[0].type.name
 
   const pokemon: Pokemon = {
     id,
@@ -22,7 +26,8 @@ export async function getPokemon(url: string): Promise<Pokemon> {
     image,
     height,
     experience: base_experience,
-    weight
+    weight,
+    type
   }
 
   return pokemon
