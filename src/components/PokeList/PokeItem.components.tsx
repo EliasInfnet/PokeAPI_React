@@ -1,7 +1,6 @@
 import { Card, CardContent, CardMedia, CircularProgress, Grid, LinearProgress, Typography } from "@mui/material";
-import { useState } from "react";
 import { Pokemon } from "../../models/pokemon.models";
-import theme from "../../theme/theme";
+import PokemonPieChart from './PokemonPieChart/PokemonPieChart'
 
 
 function PokeItem(pokemon: Pokemon) {
@@ -9,8 +8,7 @@ function PokeItem(pokemon: Pokemon) {
   const weightLog = Math.log10(Number(pokemon.weight)) * 25
   const experienceLog = Number(pokemon.experience) / 3.95
   const heightLog = Math.log10(Number(pokemon.height)) * 43.4
-
-  const barStyle = { height: '10px', borderRadius: '10px' }
+  const barStyle = { height: '7px', borderRadius: '10px' }
 
   return (
     <Grid item xs={6} lg={4} xl={3}>
@@ -41,6 +39,7 @@ function PokeItem(pokemon: Pokemon) {
           </Typography>
           <LinearProgress sx={barStyle} variant="determinate" color="success" value={weightLog} />
         </CardContent>
+        <PokemonPieChart experience={pokemon.experience} weight={pokemon.weight} height={pokemon.weight}/>
       </Card>
     </Grid>
   );
