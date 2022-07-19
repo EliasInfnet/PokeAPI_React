@@ -26,20 +26,20 @@ const pokemonTypesColors: pokemonColors = {
   'fire': orange["500"],
   'grass': green["500"],
   'ground': brown["500"],
-  'rock': grey["500"],
-  'steel': brown["700"],
-  'ice': blue["300"],
-  'electric': yellow["500"],
-  'dragon': green["600"],
-  'ghost': brown["200"],
-  'psychic': purple["500"],
+  'rock': grey["800"],
+  'steel': brown["800"],
+  'ice': blue["400"],
+  'electric': yellow["800"],
+  'dragon': green["500"],
+  'ghost': brown["700"],
+  'psychic': purple["400"],
   'normal': yellow["600"],
-  'fighting': red["500"],
-  'poison': red["700"],
+  'fighting': red["400"],
+  'poison': red["400"],
   'bug': green["400"],
-  'flying': blue["300"],
-  'dark': purple["700"],
-  'fairy': yellow["100"]
+  'flying': blue["400"],
+  'dark': purple["500"],
+  'fairy': yellow["600"]
 }
 
 export default pokemonTypesColors;

@@ -38,7 +38,7 @@ function Home() {
 
   useEffect(() => {
     const urlAPI = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=16'
-    getPokemons(urlAPI).then(res => setPokemons(() => [...res]))    
+    getPokemons(urlAPI).then(res => setPokemons(() => [...res]))
     getPokemonResponse(urlAPI).then(res => {
       setNextPage(() => res.next)
       setPrevPage(() => res.previous)
@@ -46,10 +46,10 @@ function Home() {
   }, [])
 
   useEffect(() => {
-    async function getPoke(){
+    async function getPoke() {
       try {
         const pokemon = await getPokemon(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`)
-        setPokemons(()=> [pokemon])
+        setPokemons(() => [pokemon])
       } catch (error: any) {
         getPokemons('https://pokeapi.co/api/v2/pokemon?offset=0&limit=16').then(res => setPokemons(() => [...res]))
       }
@@ -60,10 +60,10 @@ function Home() {
   return (
     <div className="Home">
       {/* <Header/> */}
-      <Grid container sx={{ margin: '20px 0px' }} spacing={2}>
+      <Grid container sx={{ margin: '20px 0px' }} justifyContent={'center'} spacing={2}>
         <Grid item><Button onClick={handlePreviousPage} variant='contained' color='error'>Previous</Button></Grid>
-        <Grid item><Button onClick={handleNextPage} variant='contained' color='success'>Next</Button></Grid>
         <Grid item><TextField onChange={handleOnSearchChange}></TextField></Grid>
+        <Grid item><Button onClick={handleNextPage} variant='contained' color='success'>Next</Button></Grid>
       </Grid>
       <PokeList pokemons={pokemons} />
     </div>
